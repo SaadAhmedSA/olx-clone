@@ -1,4 +1,4 @@
-
+"use client"
 import Image from 'next/image'
 import AutoSlider from './slider'
 import mob from "@/public/mob.png"
@@ -16,9 +16,30 @@ import item10 from "@/public/fashion.png"
 import item11 from "@/public/book.png"
 import item12 from "@/public/kid.png"
 import ProductCard from './Card'
+import { useEffect, useState } from 'react'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../config/firebase.js'
 
 
 const Header = () => {
+ const [data,setdata] = useState(null)
+  useEffect(()=>{
+// Function to fetch data
+async function getDataFromFirestore() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "ads"));
+    const data = [];
+    querySnapshot.forEach((doc) => {
+      data.push({ id: doc.id, ...doc.data() });
+      setdata(data)
+    });
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+  }
+}
+getDataFromFirestore()
+  },[])
   
   return (
  <>
@@ -89,61 +110,68 @@ const Header = () => {
    
 </div>
 <h1 className='text-2xl font-bold py-10'>Bikes & MotorCycle</h1>
-<div className='flex gap-10'>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
+<div className='flex justify-evenly flex-wrap '>
+  {data ? data.filter(item => item.category == "motorcycle").map((item)=>{
+    return(
+  <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
+
+    )
+  }):
+<h1 className='text-lg text-center'>Loading...</h1>
+  }
 </div>
 <h1 className='text-2xl font-bold py-10'>Mobile Phones</h1>
-<div className='flex gap-10'>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
+<div className='flex justify-evenly flex-wrap '>
+  {data ? data.filter(item => item.category == "Electronics").map((item)=>{
+    return(
+  <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
+
+    )
+  }):
+<h1 className='text-lg text-center'>Loading...</h1>
+  }
 </div>
 <h1 className='text-2xl font-bold py-10'>Cars & Vehicles</h1>
-<div className='flex gap-10'>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
+<div className='flex justify-evenly flex-wrap '>
+{data ? data.filter(item => item.category == "Vehicles").map((item)=>{
+    return(
+  <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
+
+    )
+  }):
+<h1 className='text-lg text-center'>Loading...</h1>
+  }
 </div>
 <h1 className='text-2xl font-bold py-10'>Houses</h1>
-<div className='flex gap-10'>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
+<div className='flex justify-evenly flex-wrap '>
+  {data ? data.filter(item => item.category == "Real Estate").map((item)=>{
+    return(
+  <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
+
+    )
+  }):
+<h1 className='text-lg text-center'>Loading...</h1>
+  }
 </div>
 <h1 className='text-2xl font-bold py-10'>land & Plots</h1>
-<div className='flex gap-10'>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
+<div className='flex justify-evenly flex-wrap '>
+  {data ? data.filter(item => item.category == "Real Estate").map((item)=>{
+    return(
+  <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
+
+    )
+  }):
+<h1 className='text-lg text-center'>Loading...</h1>
+  }
 </div>
 <h1 className='text-2xl font-bold py-10'>Tablets</h1>
-<div className='flex gap-10'>
+<div className='flex justify-evenly flex-wrap '>
 <ProductCard/>
 <ProductCard/>
 <ProductCard/>
 <ProductCard/>
 </div>
-<h1 className='text-2xl font-bold py-10'>Audio-Games</h1>
-<div className='flex gap-10'>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-</div>
-<h1 className='text-2xl font-bold py-10'>Jobs</h1>
-<div className='flex gap-10'>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-</div>
+
 
 
  </div>

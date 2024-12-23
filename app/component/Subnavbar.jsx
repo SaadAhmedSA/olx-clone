@@ -14,7 +14,7 @@ import { auth } from "../config/firebase";
 const Subnavber = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState(null); // Track user state
-  const [menu, setmenu] = useState(true); // Track user state
+  const [menu, setmenu] = useState(false); // Track user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -99,7 +99,7 @@ const Subnavber = () => {
         ) : (
           <div className="relative">
             <button className="relative w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-            <FaCircleUser onClick={() => setmenu(!menu)}/>
+            <FaCircleUser onClick={() => setmenu(!menu)} className="h-100"/>
             </button>
            { menu &&
             <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-md">
@@ -124,7 +124,7 @@ const Subnavber = () => {
 
         {/* Sell Button */}
         <button className="border-4 rounded-full border-t-yellow-300 border-b-blue-300 border-x-green-600 px-4 py-2">
-          <Link href={"/Ad"} className="flex gap-1 items-center">
+          <Link href={"/postAd"} className="flex gap-1 items-center">
             <FaPlus />
             Sell
           </Link>

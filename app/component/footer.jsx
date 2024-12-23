@@ -7,7 +7,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/f
 const Footer = () => {
   return (
     <div>
-        <div className='flex justify-evenly h-100 items-center text-black'>
+        <div className='flex justify-evenly h-100 items-center flex-wrap  text-black'>
             <Image src={foot} alt='footer' width={400} height={100}/>
             <div className='w-1/4'>
                 <h1 className='text-2xl pb-5 font-bold'>Try the OLX App</h1>
@@ -24,7 +24,7 @@ const Footer = () => {
 
             </div>
         </div>
-        <div className='flex justify-around p-5 text-gray-800 text-sm bg-gray-400 gap-10 '>
+        <div className='flex justify-around flex-wrap p-5 text-gray-800 text-sm bg-gray-400 gap-10 '>
          <div>
             <h1 className='text-xl font-bold'>Popular Categories</h1>
             <br />
