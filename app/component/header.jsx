@@ -111,7 +111,7 @@ getDataFromFirestore()
 </div>
 <h1 className='text-2xl font-bold py-10'>Bikes & MotorCycle</h1>
 <div className='flex justify-evenly flex-wrap '>
-  {data ? data.filter(item => item.category == "motorcycle").map((item)=>{
+  {data ? data.filter(item => item.category == "motorcycle").slice(0,4).map((item)=>{
     return(
   <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
 
@@ -122,7 +122,7 @@ getDataFromFirestore()
 </div>
 <h1 className='text-2xl font-bold py-10'>Mobile Phones</h1>
 <div className='flex justify-evenly flex-wrap '>
-  {data ? data.filter(item => item.category == "Electronics").map((item)=>{
+  {data ? data.filter(item => item.category == "Electronics").slice(0,4).map((item)=>{
     return(
   <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
 
@@ -133,7 +133,7 @@ getDataFromFirestore()
 </div>
 <h1 className='text-2xl font-bold py-10'>Cars & Vehicles</h1>
 <div className='flex justify-evenly flex-wrap '>
-{data ? data.filter(item => item.category == "Vehicles").map((item)=>{
+{data ? data.filter(item => item.category == "Vehicles").slice(0,4).map((item)=>{
     return(
   <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
 
@@ -144,7 +144,7 @@ getDataFromFirestore()
 </div>
 <h1 className='text-2xl font-bold py-10'>Houses</h1>
 <div className='flex justify-evenly flex-wrap '>
-  {data ? data.filter(item => item.category == "Real Estate").map((item)=>{
+  {data ? data.filter(item => item.category == "Real Estate").slice(0,4).map((item)=>{
     return(
   <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
 
@@ -155,7 +155,7 @@ getDataFromFirestore()
 </div>
 <h1 className='text-2xl font-bold py-10'>land & Plots</h1>
 <div className='flex justify-evenly flex-wrap '>
-  {data ? data.filter(item => item.category == "Real Estate").map((item)=>{
+  {data ? data.filter(item => item.category == "Real Estate").slice(0,4).map((item)=>{
     return(
   <ProductCard key={item.id} img={item.image} title={item.title} price={item.price} location={item.location} condition={item.condition}/>
 
@@ -164,15 +164,6 @@ getDataFromFirestore()
 <h1 className='text-lg text-center'>Loading...</h1>
   }
 </div>
-<h1 className='text-2xl font-bold py-10'>Tablets</h1>
-<div className='flex justify-evenly flex-wrap '>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-<ProductCard/>
-</div>
-
-
 
  </div>
  </>
