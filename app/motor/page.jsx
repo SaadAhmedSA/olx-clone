@@ -21,7 +21,7 @@ const page = () => {
           Property
         </Link>
       </div>
-
+<div>Motoor</div>
       
     </div>
   )
